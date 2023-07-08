@@ -21,7 +21,6 @@ func _ready() -> void:
 	current = self
 
 func take_damage(amount: float) -> void:
-	print('damage')
 	hp -= amount
 	heal_timer = 0
 	if hp <= 0:
