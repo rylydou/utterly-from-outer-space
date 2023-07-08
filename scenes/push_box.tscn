@@ -9,7 +9,6 @@ albedo_color = Color(0.611765, 0.286275, 0, 1)
 
 [node name="PushBox" type="RigidBody3D"]
 mass = 5.0
-continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_b2ud4")
