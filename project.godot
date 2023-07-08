@@ -89,6 +89,13 @@ dash={
 "events": []
 }
 
+[layer_names]
+
+3d_physics/layer_1="All"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Alien"
+3d_physics/layer_4="Ooze"
+
 [rendering]
 
 renderer/rendering_method="mobile"

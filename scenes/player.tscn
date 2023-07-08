@@ -1874,6 +1874,7 @@ _data = {
 height = 1.0
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("turn_node", "animation_player")]
+collision_layer = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
