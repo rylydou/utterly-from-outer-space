@@ -8,34 +8,33 @@ height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06gvt"]
 resource_name = "Stripe"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.189499, 0.189499, 0.189499, 1)
-metallic = 0.4
-roughness = 0.415087
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.941176, 0.180392, 0.396078, 1)
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxymb"]
 resource_name = "Main"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.273834, 0.470378, 0.464325, 1)
-metallic = 0.4
-roughness = 0.415087
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.411765, 0.74902, 0.384314, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jli87"]
 resource_name = "Nails"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.225948, 0.182741, 0.185684, 1)
-metallic = 0.4
-roughness = 0.415087
+diffuse_mode = 3
+specular_mode = 1
+metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3vhu"]
 resource_name = "Eyes"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.153051, 0.153051, 0.153051, 1)
-metallic = 0.4
-roughness = 0.415087
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcrf0"]
 resource_name = "White"
+diffuse_mode = 3
+specular_mode = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.827351, 0.827351, 0.827351, 1)
 metallic = 0.4

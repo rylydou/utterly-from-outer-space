@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://dlqm6thktv6tk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_smb3u"]
-[ext_resource type="PackedScene" uid="uid://32pty33esgip" path="res://scenes/bubble_blower.tscn" id="2_n157o"]
+[ext_resource type="PackedScene" uid="uid://c5xdjra7ax5wg" path="res://scenes/bubble_blower.tscn" id="2_n157o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bopcu"]
 friction = 0.0
