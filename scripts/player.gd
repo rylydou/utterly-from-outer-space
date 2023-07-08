@@ -16,9 +16,12 @@ var is_jumping := false
 @export_group('References')
 @export var turn_node: Node3D
 @export var animation_player: AnimationPlayer
+@export var bubble_area: Area3D
 
 func _ready() -> void:
 	current = self
+	get_window().grab_focus()
+	get_window().always_on_top = true
 
 func take_damage(amount: float) -> void:
 	hp -= amount
@@ -31,6 +34,13 @@ var input_jump := false
 func _process(delta: float) -> void:
 	input = Input.get_vector('move_left', 'move_right', 'move_forward', 'move_back')
 	input_jump = Input.is_action_just_pressed('jump')
+	
+	if Input.is_action_just_pressed('bubble'):
+		print('bubble')
+		for body in bubble_area.get_overlapping_bodies():
+			print(body)
+			if body.has_method('bubble'):
+				body.call('bubble')
 
 func _physics_process(delta: float) -> void:
 	heal_timer += delta
@@ -52,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	
 	if input != Vector2.ZERO:
 		var target_rot := atan2(direction.x, direction.z)
-		turn_node.rotation.y = lerp_angle(turn_node.rotation.y, target_rot, .2)
+		turn_node.rotation.y = lerp_angle(turn_node.rotation.y, target_rot, .1)
 	
 	linear_velocity.x = direction.x*max_speed
 	linear_velocity.z = direction.z*max_speed
@@ -62,7 +72,6 @@ func _physics_process(delta: float) -> void:
 		is_jumping = true
 		is_grounded = false
 		set_axis_velocity(Vector3(0, jump_velocity, 0))
-		animation_player.stop()
 		animation_player.play('Jump', -1, 2)
 	
 	if is_grounded:

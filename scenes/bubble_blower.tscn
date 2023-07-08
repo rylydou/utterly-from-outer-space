@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://32pty33esgip"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4u5x"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 0.682353, 0.713726, 1)
+roughness = 0.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_iltej"]
+rings = 5
+ring_segments = 3
+
+[sub_resource type="BoxMesh" id="BoxMesh_qkaqb"]
+size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0lei"]
+transparency = 1
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.5415, 0.929575, 0.95, 0.501961)
+metallic = 0.5
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_alcve"]
+size = Vector2(1, 1)
+
+[node name="BubbleBlower" type="Node3D"]
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_e4u5x")
+mesh = SubResource("TorusMesh_iltej")
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.119263, 0)
+material_override = SubResource("StandardMaterial3D_e4u5x")
+mesh = SubResource("BoxMesh_qkaqb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.03276, 0)
+material_override = SubResource("StandardMaterial3D_h0lei")
+mesh = SubResource("PlaneMesh_alcve")

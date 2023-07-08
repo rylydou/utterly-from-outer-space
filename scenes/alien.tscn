@@ -1,6 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bdq7s4ilg67o1"]
+[gd_scene load_steps=29 format=3 uid="uid://bdq7s4ilg67o1"]
 
 [ext_resource type="Script" path="res://scripts/alien.gd" id="1_1kk0j"]
+[ext_resource type="Texture2D" uid="uid://bppsk3lh74scn" path="res://materials/textures/bubble.png" id="2_4xarg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0uyec"]
+height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06gvt"]
 resource_name = "Stripe"
@@ -5241,12 +5245,18 @@ height = 4.0
 radial_segments = 8
 rings = 1
 
-[node name="Alien" type="Node3D" node_paths=PackedStringArray("look_node", "turn_node", "animation_player", "raycast")]
+[node name="Alien" type="StaticBody3D" node_paths=PackedStringArray("look_node", "turn_node", "animation_player", "raycast", "skeleton")]
+collision_layer = 5
 script = ExtResource("1_1kk0j")
 look_node = NodePath("VisionCone")
 turn_node = NodePath("alien_a")
 animation_player = NodePath("alien_a/AnimationPlayer")
 raycast = NodePath("VisionCone/RayCast3D")
+skeleton = NodePath("alien_a/RootNode/AlienArmature/Skeleton3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CylinderShape3D_0uyec")
 
 [node name="alien_a" type="Node3D" parent="."]
 
@@ -5673,7 +5683,7 @@ libraries = {
 }
 
 [node name="VisionCone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
 collision_layer = 0
 collision_mask = 2
 
@@ -5692,6 +5702,16 @@ shape = SubResource("CylinderShape3D_s2jc7")
 material_override = SubResource("StandardMaterial3D_yds1d")
 mesh = SubResource("CylinderMesh_l6ots")
 skeleton = NodePath("../../..")
+
+[node name="Bubble" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.702523, 0)
+visible = false
+pixel_size = 0.0625
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 4
+texture = ExtResource("2_4xarg")
 
 [connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
 [connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]
