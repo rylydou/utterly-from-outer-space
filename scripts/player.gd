@@ -2,6 +2,12 @@ class_name Player extends RigidBody3D
 
 static var current: Player
 
+@export var max_hp := 100.
+@onready var hp := max_hp
+@export var heal_delay := 3.
+var heal_timer := 0.
+@export var heal_rate := 100.
+
 @export_group('Movement')
 @export var max_speed := 12.
 @export var jump_velocity := 10.
@@ -14,6 +20,13 @@ var is_jumping := false
 func _ready() -> void:
 	current = self
 
+func take_damage(amount: float) -> void:
+	print('damage')
+	hp -= amount
+	heal_timer = 0
+	if hp <= 0:
+		get_tree().reload_current_scene()
+
 var input: Vector2
 var input_jump := false
 func _process(delta: float) -> void:
@@ -21,6 +34,10 @@ func _process(delta: float) -> void:
 	input_jump = Input.is_action_just_pressed('jump')
 
 func _physics_process(delta: float) -> void:
+	heal_timer += delta
+	if heal_timer > heal_delay:
+		hp = move_toward(hp, max_hp, heal_rate*delta)
+	
 	var ground_test = move_and_collide(Vector3.DOWN*delta, true)
 	var is_grounded := ground_test and ground_test.get_normal().y > 0
 	if is_grounded and is_jumping:

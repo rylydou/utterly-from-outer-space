@@ -15,6 +15,10 @@ run/main_scene="res://level1proto.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Hud="*res://scenes/hud.tscn"
+
 [debug]
 
 gdscript/warnings/enable=false
