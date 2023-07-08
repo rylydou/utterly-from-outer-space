@@ -4,6 +4,11 @@ class_name Player extends RigidBody3D
 @export var air_speed := 10.
 @export var jump_velocity := 10.
 
+static var current: Player
+
+func _ready() -> void:
+	current = self
+
 var input: Vector2
 var input_jump := false
 func _process(delta: float) -> void:

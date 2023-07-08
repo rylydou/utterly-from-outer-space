@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://crh5nghclftr2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pii57"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6o8i"]
+size = Vector3(1, 0.25, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwdf0"]
+size = Vector3(1, 0.25, 1)
+
+[node name="Button" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.905124, 0)
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+material_override = SubResource("StandardMaterial3D_pii57")
+mesh = SubResource("BoxMesh_p6o8i")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_bwdf0")
+
+[node name="SliderJoint3D" type="SliderJoint3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+node_a = NodePath("../StaticBody3D")
+node_b = NodePath("../RigidBody3D")
+linear_limit/upper_distance = 0.0
