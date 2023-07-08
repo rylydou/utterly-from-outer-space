@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK23"
-run/main_scene="res://level1proto.tscn"
+run/main_scene="res://blakeplayground.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
