@@ -1,6 +1,6 @@
 extends Node
 
-const SOUND_BANK_FOLDER := 'res://content/sounds/'
+const SOUND_BANK_FOLDER := 'res://sounds/'
 const FALLBACK_SOUND: AudioStreamWAV = preload('./fallback.wav')
 const POOL_SIZE_2D := 16.
 const POOL_SIZE_UI := 8.

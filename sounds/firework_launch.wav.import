@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dgxcf46ysohru"
-path="res://.godot/imported/firework_launch.wav-5723cc31ca89ec9e7651fcf73d67bb4b.sample"
+path="res://.godot/imported/firework_launch.wav-7c60972ad74f38149732947eb0ab1640.sample"
 
 [deps]
 
-source_file="res://soundbank/firework_launch.wav"
-dest_files=["res://.godot/imported/firework_launch.wav-5723cc31ca89ec9e7651fcf73d67bb4b.sample"]
+source_file="res://sounds/firework_launch.wav"
+dest_files=["res://.godot/imported/firework_launch.wav-7c60972ad74f38149732947eb0ab1640.sample"]
 
 [params]
 

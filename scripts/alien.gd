@@ -32,8 +32,8 @@ func _physics_process(delta: float) -> void:
 		bubble_timer += delta
 		turn_node.visible = int(bubble_timer*20)%2 == 0
 		translate(Vector3.UP*delta*bubble_timer*5)
-		SoundBank.play('alien_death', global_position)
 		if bubble_timer > 1.:
+			SoundBank.play('alien_death', global_position)
 			queue_free()
 		return
 	

@@ -7,6 +7,7 @@ signal collect
 func _on_area_3d_body_entered(body):
 	collect.emit()
 	queue_free()
+	SoundBank.play('health_restore', global_position)
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mejxn"]

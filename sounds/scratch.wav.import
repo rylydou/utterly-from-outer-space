@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://f85kuquew1an"
-path="res://.godot/imported/absorb.wav-ff3afd0302de454b31671299ba3b68e2.sample"
+uid="uid://bpr0r87osf3nk"
+path="res://.godot/imported/scratch.wav-7d2aa31972537e0b35c88e8bd0baa876.sample"
 
 [deps]
 
-source_file="res://soundbank/absorb.wav"
-dest_files=["res://.godot/imported/absorb.wav-ff3afd0302de454b31671299ba3b68e2.sample"]
+source_file="res://sounds/scratch.wav"
+dest_files=["res://.godot/imported/scratch.wav-7d2aa31972537e0b35c88e8bd0baa876.sample"]
 
 [params]
 

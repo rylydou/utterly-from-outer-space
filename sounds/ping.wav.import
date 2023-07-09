@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b18q1mdko67dd"
-path="res://.godot/imported/ouch.wav-99e5c1711c2cf7db74f7064cb4ddbdf5.sample"
+uid="uid://okx6rg25a3gd"
+path="res://.godot/imported/ping.wav-f50f49c78cdede9aeaa6d25c0d968e0c.sample"
 
 [deps]
 
-source_file="res://soundbank/ouch.wav"
-dest_files=["res://.godot/imported/ouch.wav-99e5c1711c2cf7db74f7064cb4ddbdf5.sample"]
+source_file="res://sounds/ping.wav"
+dest_files=["res://.godot/imported/ping.wav-f50f49c78cdede9aeaa6d25c0d968e0c.sample"]
 
 [params]
 

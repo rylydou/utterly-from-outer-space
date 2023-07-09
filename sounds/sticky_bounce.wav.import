@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cfmmwyfd7lcol"
-path="res://.godot/imported/sticky_bounce.wav-368bfb9a066ac9a9f5657d4aafa7a375.sample"
+path="res://.godot/imported/sticky_bounce.wav-85b5c51fb0c68dc29220d8ec8d40c4ac.sample"
 
 [deps]
 
-source_file="res://soundbank/sticky_bounce.wav"
-dest_files=["res://.godot/imported/sticky_bounce.wav-368bfb9a066ac9a9f5657d4aafa7a375.sample"]
+source_file="res://sounds/sticky_bounce.wav"
+dest_files=["res://.godot/imported/sticky_bounce.wav-85b5c51fb0c68dc29220d8ec8d40c4ac.sample"]
 
 [params]
 

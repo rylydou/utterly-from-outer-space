@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bnkh5lhxn27au"
-path="res://.godot/imported/split.wav-4c6db4217857cff06075ca3c01b0d75d.sample"
+uid="uid://c5kkqavyp04rs"
+path="res://.godot/imported/super_Jump.wav-f7b930884df3b2e67ffeaf425d069bc5.sample"
 
 [deps]
 
-source_file="res://soundbank/split.wav"
-dest_files=["res://.godot/imported/split.wav-4c6db4217857cff06075ca3c01b0d75d.sample"]
+source_file="res://sounds/super_Jump.wav"
+dest_files=["res://.godot/imported/super_Jump.wav-f7b930884df3b2e67ffeaf425d069bc5.sample"]
 
 [params]
 

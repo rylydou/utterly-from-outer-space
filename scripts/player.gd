@@ -16,6 +16,7 @@ var heal_timer := 0.
 @export_group('Movement')
 @export var max_speed := 12.
 @export var jump_velocity := 10.
+var power_jump := false
 var is_jumping := false
 @export var boots_jump_velocity := 20
 @export var dash_cooldown := 4.
@@ -42,12 +43,14 @@ func _ready() -> void:
 		checkpoint = global_position
 	else:
 		global_position = checkpoint
+		SoundBank.play('stock', global_position)
 
 func take_damage(amount: float) -> void:
 	hp -= amount
 	heal_timer = 0
 	if hp <= 0:
 		get_tree().reload_current_scene()
+		SoundBank.play('ouch', global_position)
 
 var input: Vector2
 var input_jump := false
@@ -63,6 +66,9 @@ func _process(delta: float) -> void:
 		for body in bubble_area.get_overlapping_bodies():
 			if body.has_method('bubble'):
 				body.call('bubble')
+	
+	if Input.is_action_just_pressed('restart'):
+		get_tree().reload_current_scene()
 
 func _physics_process(delta: float) -> void:
 	if $OozeArea.get_overlapping_bodies().size() > 0:
@@ -101,6 +107,7 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.z = direction.z*max_speed
 	
 	if input_jump and is_grounded:
+		if power_jump: SoundBank.play('super_jump', global_position)
 		on_jump.emit()
 		boots_object.global_position = global_position
 		boots_object.position.y += 0.1
@@ -112,6 +119,7 @@ func _physics_process(delta: float) -> void:
 	
 	if input_dash and is_grounded:
 		if can_dash and til_dash < 0:
+			SoundBank.play('firework_launch', global_position)
 			til_dash = dash_cooldown
 			input_dash = false
 			is_jumping = true
@@ -133,12 +141,12 @@ func _physics_process(delta: float) -> void:
 func boots():
 	jump_velocity = boots_jump_velocity
 	boots_object.show()
+	power_jump = true
 
 func dash():
 	can_dash = true
 	til_dash = 0
 	dash_object.show()
-
 
 func _on_checkpoint_area_area_entered(area: Area3D) -> void:
 	checkpoint = area.global_position

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cfni5ijc1jn2s"
-path="res://.godot/imported/hurt_self.wav-aa438109b6c9039f746a50a5cc5229fe.sample"
+uid="uid://cvn17w075chgj"
+path="res://.godot/imported/alien_death.wav-d08e22ff24cb9549b05d06c81f07dd19.sample"
 
 [deps]
 
-source_file="res://soundbank/hurt_self.wav"
-dest_files=["res://.godot/imported/hurt_self.wav-aa438109b6c9039f746a50a5cc5229fe.sample"]
+source_file="res://sounds/alien_death.wav"
+dest_files=["res://.godot/imported/alien_death.wav-d08e22ff24cb9549b05d06c81f07dd19.sample"]
 
 [params]
 

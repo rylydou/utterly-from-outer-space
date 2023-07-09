@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c5kkqavyp04rs"
-path="res://.godot/imported/super_Jump.wav-46a41d9b7fd9cf40a192176b8f8d9641.sample"
+uid="uid://djr0a7md1dqnv"
+path="res://.godot/imported/rubber_duck.wav-2f89f01896f940b44cb213871567f93c.sample"
 
 [deps]
 
-source_file="res://soundbank/super_Jump.wav"
-dest_files=["res://.godot/imported/super_Jump.wav-46a41d9b7fd9cf40a192176b8f8d9641.sample"]
+source_file="res://sounds/rubber_duck.wav"
+dest_files=["res://.godot/imported/rubber_duck.wav-2f89f01896f940b44cb213871567f93c.sample"]
 
 [params]
 
