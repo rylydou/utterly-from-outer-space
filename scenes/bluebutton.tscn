@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://crh5nghclftr2"]
+[gd_scene load_steps=10 format=3 uid="uid://chjpt7v0r4upt"]
 
-[ext_resource type="Script" path="res://scripts/button.gd" id="1_ahh00"]
+[ext_resource type="Script" path="res://scripts/bluebutton.gd" id="1_rybib"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vi5ur"]
 size = Vector3(1, 0.1, 1)
@@ -9,7 +9,7 @@ size = Vector3(1, 0.1, 1)
 size = Vector3(1.1, 0.1, 1.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pii57"]
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0.301961, 0.494118, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_p6o8i"]
 size = Vector3(1, 0.25, 1)
@@ -41,8 +41,8 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_2mwvf"]
 size = Vector3(1, 0.1, 1)
 
-[node name="Button" type="Node3D" node_paths=PackedStringArray("animation_player")]
-script = ExtResource("1_ahh00")
+[node name="BlueButton" type="Node3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_rybib")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -93,3 +93,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("BoxShape3D_2mwvf")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

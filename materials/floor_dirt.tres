@@ -6,5 +6,5 @@
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("1_5ljlf")
-uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_scale = Vector3(1, 10, 1)
 texture_filter = 4

@@ -5253,7 +5253,7 @@ turn_node = NodePath("alien_a")
 animation_player = NodePath("alien_a/AnimationPlayer")
 raycast = NodePath("VisionCone/RayCast3D")
 skeleton = NodePath("alien_a/RootNode/AlienArmature/Skeleton3D")
-idle_movement = 0.05
+idle_movement = 0.025
 idle_loop_time = 2.0
 exclamation = NodePath("exclamation")
 
