@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://bdq7s4ilg67o1"]
+[gd_scene load_steps=30 format=3 uid="uid://bdq7s4ilg67o1"]
 
 [ext_resource type="Script" path="res://scripts/alien.gd" id="1_1kk0j"]
 [ext_resource type="Texture2D" uid="uid://bppsk3lh74scn" path="res://materials/textures/bubble.png" id="2_4xarg"]
+[ext_resource type="PackedScene" uid="uid://cudgu1mk6kl08" path="res://3d/exclamation.glb" id="3_lcjih"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0uyec"]
 height = 1.5
@@ -5244,7 +5245,7 @@ height = 4.0
 radial_segments = 8
 rings = 1
 
-[node name="Alien" type="StaticBody3D" node_paths=PackedStringArray("look_node", "turn_node", "animation_player", "raycast", "skeleton")]
+[node name="Alien" type="StaticBody3D" node_paths=PackedStringArray("look_node", "turn_node", "animation_player", "raycast", "skeleton", "exclamation")]
 collision_layer = 5
 script = ExtResource("1_1kk0j")
 look_node = NodePath("VisionCone")
@@ -5254,6 +5255,7 @@ raycast = NodePath("VisionCone/RayCast3D")
 skeleton = NodePath("alien_a/RootNode/AlienArmature/Skeleton3D")
 idle_movement = 0.05
 idle_loop_time = 2.0
+exclamation = NodePath("exclamation")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -5700,6 +5702,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 shape = SubResource("CylinderShape3D_s2jc7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VisionCone/CollisionShape3D"]
+visible = false
 material_override = SubResource("StandardMaterial3D_yds1d")
 mesh = SubResource("CylinderMesh_l6ots")
 skeleton = NodePath("../../..")
@@ -5713,6 +5716,10 @@ double_sided = false
 no_depth_test = true
 texture_filter = 4
 texture = ExtResource("2_4xarg")
+
+[node name="exclamation" parent="." instance=ExtResource("3_lcjih")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.75, 0)
+visible = false
 
 [connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
 [connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]

@@ -12,6 +12,7 @@ var shoot_timer := 0.
 @export var skeleton: Skeleton3D
 @export var idle_movement: float
 @export var idle_loop_time: float
+@export var exclamation:Node3D
 
 var seen_player: Player
 var is_bubbled := false
@@ -37,8 +38,9 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(seen_player):
 		animation_player.play('AlienArmature|Alien_Idle', .33, 1.)
 		var dir := global_position.direction_to(seen_player.global_position)
-		turn_node.rotation.y = atan2(dir.x, dir.z)
+		turn_node.rotation.y = atan2(dir.x, dir.z) - PI / 2
 		look_node.look_at(seen_player.global_position, Vector3.UP, true)
+		exclamation.visible = true
 		
 		if raycast.get_collider() is Player:
 			animation_player.play('AlienArmature|Alien_Punch', .33, 1.)
@@ -59,6 +61,8 @@ func _physics_process(delta: float) -> void:
 			loop_progress -= 1
 		animation_player.play('AlienArmature|Alien_Idle', 1., 1.)
 		scale = Vector3(1, (1 - idle_movement / 2) + sin(loop_progress * 2 * PI) * idle_movement, 1)
+		exclamation.visible = false
+		
 
 func _on_vision_cone_body_entered(body: Node3D) -> void:
 	var player = body as Player
