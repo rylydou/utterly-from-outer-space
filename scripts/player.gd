@@ -78,4 +78,4 @@ func _physics_process(delta: float) -> void:
 		if linear_speed < .1:
 			animation_player.play('Idle', -1, 1)
 		else:
-			animation_player.play('Walk', -1, 4)
+			animation_player.play('Walk', -1, 2)
