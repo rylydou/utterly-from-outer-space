@@ -105,6 +105,7 @@ bubble={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Alien"
 3d_physics/layer_4="Ooze"
+3d_physics/layer_9="box"
 
 [rendering]
 

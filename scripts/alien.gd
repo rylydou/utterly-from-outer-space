@@ -38,8 +38,11 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(seen_player):
 		animation_player.play('AlienArmature|Alien_Idle', .33, 1.)
 		var dir := global_position.direction_to(seen_player.global_position)
-		turn_node.look_at(seen_player.global_position, Vector3.UP, true)
+		#turn_node.rotation = Vector3(0, atan2(dir.x, dir.z), 0)
 		look_node.look_at(seen_player.global_position, Vector3.UP, true)
+		turn_node.look_at(seen_player.global_position, Vector3.UP, true)
+		turn_node.rotation = Vector3(0, turn_node.rotation.y, 0) #Dont judge me, its past midnight
+		
 		exclamation.visible = true
 		
 		if raycast.get_collider() is Player:

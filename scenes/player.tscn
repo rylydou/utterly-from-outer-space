@@ -2088,7 +2088,7 @@ bones/26/parent = 3
 bones/26/rest = Transform3D(-0.998979, 0.0313673, -0.0325165, -0.0125189, 0.49935, 0.86631, 0.0434109, 0.865832, -0.498448, -0.000147309, 0.00134298, 0.00334891)
 bones/26/enabled = true
 bones/26/position = Vector3(-0.000147309, 0.00134298, 0.00334891)
-bones/26/rotation = Quaternion(0.00544398, 0.86556, 0.500295, -0.0219301)
+bones/26/rotation = Quaternion(0.00544396, 0.86556, 0.500295, -0.0219301)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Neck"
 bones/27/parent = 26
@@ -2180,7 +2180,7 @@ mesh = SubResource("ArrayMesh_j41xr")
 skin = SubResource("Skin_fx7l1")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Cow/RootNode/Armature/Skeleton3D"]
-transform = Transform3D(-0.866223, -0.00153378, 0.499656, -0.272378, -0.836898, -0.474775, 0.418889, -0.547356, 0.724523, -5.38138e-05, -0.00743729, 0.00926108)
+transform = Transform3D(-0.866223, -0.00153378, 0.499656, -0.272378, -0.836898, -0.474775, 0.418889, -0.547357, 0.724523, -5.38139e-05, -0.00743729, 0.00926108)
 bone_name = "Head"
 bone_idx = 28
 

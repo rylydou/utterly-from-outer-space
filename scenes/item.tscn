@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyefi1k7outyn"]
+
+[sub_resource type="GDScript" id="GDScript_pb7yc"]
+script/source = "extends Node3D
+signal collect
+
+func _on_area_3d_body_entered(body):
+	collect.emit()
+	queue_free()
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mejxn"]
+albedo_color = Color(0.25098, 0.513726, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shb4v"]
+material = SubResource("StandardMaterial3D_mejxn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fykem"]
+
+[node name="item" type="Node3D"]
+script = SubResource("GDScript_pb7yc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_shb4v")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_fykem")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
