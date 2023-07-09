@@ -36,6 +36,7 @@ var dashing := false
 @export var dash_object: Node3D
 @export var boots_object : Node3D
 static var is_ufo := false
+var is_god := false
 
 func _ready() -> void:
 	current = self
@@ -52,6 +53,7 @@ func _ready() -> void:
 		jump_velocity = boots_jump_velocity
 
 func take_damage(amount: float) -> void:
+	if is_god: return
 	hp -= amount
 	heal_timer = 0
 	if hp <= 0:
@@ -69,14 +71,21 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed('bubble'):
 		on_bubble.emit()
+		SoundBank.play('bounce', global_position)
 		for body in bubble_area.get_overlapping_bodies():
 			if body.has_method('bubble'):
 				body.call('bubble')
 	
 	if Input.is_action_just_pressed('restart'):
 		get_tree().reload_current_scene()
+	
+	if Input.is_action_just_pressed('god'):
+		is_god = !is_god
 
 func _physics_process(delta: float) -> void:
+	if position.y < -5:
+		get_tree().reload_current_scene()
+	
 	if is_ufo:
 		if %UfoRayCast.get_collider():
 			linear_velocity.y = 1
@@ -121,7 +130,7 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = direction.x*max_speed
 		linear_velocity.z = direction.z*max_speed
 	
-	if input_jump and is_grounded and not is_ufo:
+	if input_jump and ((is_grounded and not is_ufo) or is_god):
 		if power_jump: SoundBank.play('super_jump', global_position)
 		on_jump.emit()
 		boots_object.global_position = global_position

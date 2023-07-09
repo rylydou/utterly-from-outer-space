@@ -57,6 +57,7 @@ The alien technology lets you jump much higher than you ever could have imagined
 label_settings = SubResource("LabelSettings_bo5uc")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Dash" type="Label" parent="Pan/Texts"]
 visible = false
@@ -66,6 +67,7 @@ Press Shift to activate it."
 label_settings = SubResource("LabelSettings_bo5uc")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Dash2" type="Label" parent="Pan/Texts"]
 visible = false
@@ -75,3 +77,4 @@ Now take revenge on the aliens."
 label_settings = SubResource("LabelSettings_bo5uc")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2

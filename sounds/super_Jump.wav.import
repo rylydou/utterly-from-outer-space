@@ -13,12 +13,12 @@ dest_files=["res://.godot/imported/super_Jump.wav-f7b930884df3b2e67ffeaf425d069b
 [params]
 
 force/8_bit=false
-force/mono=false
-force/max_rate=false
+force/mono=true
+force/max_rate=true
 force/max_rate_hz=44100
-edit/trim=false
+edit/trim=true
 edit/normalize=false
-edit/loop_mode=0
+edit/loop_mode=1
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=0
+compress/mode=1

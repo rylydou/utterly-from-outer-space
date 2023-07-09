@@ -9,4 +9,4 @@ func _on_area_3d_body_entered(body):
 		animation_player.play("pushed")
 		pressed.emit()
 	ispressed = true
-	
+	SoundBank.play('scratch', global_position)
