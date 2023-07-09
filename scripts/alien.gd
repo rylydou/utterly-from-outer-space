@@ -10,14 +10,20 @@ var shoot_timer := 0.
 @export var animation_player: AnimationPlayer
 @export var raycast: RayCast3D
 @export var skeleton: Skeleton3D
+@export var idle_movement: float
+@export var idle_loop_time: float
 
 var seen_player: Player
 var is_bubbled := false
 var bubble_timer := 0.
+var loop_progress := 0.
 
 func bubble() -> void:
 	is_bubbled = true
 	$Bubble.show()
+
+func _init():
+	loop_progress = randf()
 
 func _physics_process(delta: float) -> void:
 	if is_bubbled:
@@ -48,7 +54,11 @@ func _physics_process(delta: float) -> void:
 		shoot_timer = 0
 		look_node.rotation = Vector3.ZERO
 		turn_node.rotation.y = 0
+		loop_progress += delta / idle_loop_time
+		if loop_progress > 1:
+			loop_progress -= 1
 		animation_player.play('AlienArmature|Alien_Idle', 1., 1.)
+		scale = Vector3(1, (1 - idle_movement / 2) + sin(loop_progress * 2 * PI) * idle_movement, 1)
 
 func _on_vision_cone_body_entered(body: Node3D) -> void:
 	var player = body as Player
