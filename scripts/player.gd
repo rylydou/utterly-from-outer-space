@@ -16,7 +16,7 @@ var heal_timer := 0.
 @export_group('Movement')
 @export var max_speed := 12.
 @export var jump_velocity := 10.
-var power_jump := false
+static var power_jump := false
 var is_jumping := false
 @export var boots_jump_velocity := 20
 @export var dash_cooldown := 4.
@@ -25,7 +25,7 @@ var til_dash: float
 @export var dash_height := 10.
 @export var dash_len := 1.
 var dashing_for := 0.
-@export var can_dash := false
+static var can_dash := false
 var dashing := false
 
 @export_group('References')
@@ -35,7 +35,7 @@ var dashing := false
 @export var bubble_object: Node3D
 @export var dash_object: Node3D
 @export var boots_object : Node3D
-var is_ufo := false
+static var is_ufo := false
 
 func _ready() -> void:
 	current = self
@@ -45,6 +45,11 @@ func _ready() -> void:
 	else:
 		global_position = checkpoint
 		SoundBank.play('stock', global_position)
+	
+	if is_ufo:
+		%UFO.show()
+	if power_jump:
+		jump_velocity = boots_jump_velocity
 
 func take_damage(amount: float) -> void:
 	hp -= amount
@@ -82,7 +87,7 @@ func _physics_process(delta: float) -> void:
 				body.call('bubble')
 	
 	if $OozeArea.get_overlapping_bodies().size() > 0:
-		take_damage(1)
+		take_damage(10)
 	
 	heal_timer += delta
 	if heal_timer > heal_delay:

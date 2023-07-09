@@ -2045,7 +2045,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_1nrqr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ks25q"]
-height = 0.5
+height = 1.06025
 radius = 0.4
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("turn_node", "animation_player", "bubble_area", "bubble_object", "dash_object", "boots_object")]
@@ -2063,7 +2063,7 @@ script = ExtResource("1_smb3u")
 max_speed = 3.0
 jump_velocity = 5.0
 boots_jump_velocity = 8
-dash_cooldown = 0.0
+dash_cooldown = 1.0
 dash_velocity = 20.0
 dash_height = 0.0
 dash_len = 0.5
@@ -2103,6 +2103,7 @@ shape = SubResource("CylinderShape3D_bq2wf")
 [node name="UfoRayCast" type="RayCast3D" parent="Cow/UFO"]
 unique_name_in_owner = true
 target_position = Vector3(0, -4, 0)
+collision_mask = 9
 debug_shape_thickness = 5
 
 [node name="RootNode" type="Node3D" parent="Cow"]
