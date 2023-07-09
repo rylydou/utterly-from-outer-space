@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(seen_player):
 		animation_player.play('AlienArmature|Alien_Idle', .33, 1.)
 		var dir := global_position.direction_to(seen_player.global_position)
-		turn_node.rotation.y = atan2(dir.x, dir.z) - PI / 2
+		turn_node.look_at(seen_player.global_position, Vector3.UP, true)
 		look_node.look_at(seen_player.global_position, Vector3.UP, true)
 		exclamation.visible = true
 		
