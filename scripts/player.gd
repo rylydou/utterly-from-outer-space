@@ -35,6 +35,7 @@ var dashing := false
 @export var bubble_object: Node3D
 @export var dash_object: Node3D
 @export var boots_object : Node3D
+var is_ufo := false
 
 func _ready() -> void:
 	current = self
@@ -71,6 +72,15 @@ func _process(delta: float) -> void:
 		get_tree().reload_current_scene()
 
 func _physics_process(delta: float) -> void:
+	if is_ufo:
+		if %UfoRayCast.get_collider():
+			linear_velocity.y = 1
+		linear_velocity.y += .14
+		hp = max_hp
+		for body in %UfoArea.get_overlapping_bodies():
+			if body.has_method('bubble'):
+				body.call('bubble')
+	
 	if $OozeArea.get_overlapping_bodies().size() > 0:
 		take_damage(1)
 	
@@ -106,7 +116,7 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = direction.x*max_speed
 		linear_velocity.z = direction.z*max_speed
 	
-	if input_jump and is_grounded:
+	if input_jump and is_grounded and not is_ufo:
 		if power_jump: SoundBank.play('super_jump', global_position)
 		on_jump.emit()
 		boots_object.global_position = global_position
@@ -117,7 +127,7 @@ func _physics_process(delta: float) -> void:
 		set_axis_velocity(Vector3(0, jump_velocity, 0))
 		animation_player.play('Jump', -1, 1.2)
 	
-	if input_dash and is_grounded:
+	if input_dash and not is_ufo:
 		if can_dash and til_dash < 0:
 			SoundBank.play('firework_launch', global_position)
 			til_dash = dash_cooldown
@@ -137,6 +147,9 @@ func _physics_process(delta: float) -> void:
 			animation_player.play('Idle', -1, 1)
 		else:
 			animation_player.play('Walk', -1, 2)
+	
+	if is_ufo:
+		animation_player.play('Idle', -1, 1)
 
 func boots():
 	jump_velocity = boots_jump_velocity
@@ -147,6 +160,10 @@ func dash():
 	can_dash = true
 	til_dash = 0
 	dash_object.show()
+
+func ufo():
+	is_ufo = true
+	%UFO.show()
 
 func _on_checkpoint_area_area_entered(area: Area3D) -> void:
 	checkpoint = area.global_position

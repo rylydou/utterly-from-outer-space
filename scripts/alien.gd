@@ -20,6 +20,7 @@ var bubble_timer := 0.
 var loop_progress := 0.
 
 func bubble() -> void:
+	if is_bubbled: return
 	SoundBank.play('absorb', global_position)
 	is_bubbled = true
 	$Bubble.show()

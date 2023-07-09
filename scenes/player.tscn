@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dlqm6thktv6tk"]
+[gd_scene load_steps=41 format=3 uid="uid://dlqm6thktv6tk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_smb3u"]
 [ext_resource type="PackedScene" uid="uid://c5xdjra7ax5wg" path="res://scenes/bubble_blower.tscn" id="2_n157o"]
@@ -6,9 +6,36 @@
 [ext_resource type="Texture2D" uid="uid://dsw0cboflqbel" path="res://materials/textures/bubble_sm.png" id="3_xn0o6"]
 [ext_resource type="Texture2D" uid="uid://g10062pat1t2" path="res://materials/textures/fire.png" id="4_0st5u"]
 [ext_resource type="Texture2D" uid="uid://cvalp061qbtcb" path="res://materials/textures/jump.png" id="6_jehrc"]
+[ext_resource type="PackedScene" uid="uid://13r8ei2maxlv" path="res://3d/Flying saucer.glb" id="7_h4pkm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bopcu"]
 friction = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfvr7"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_xn0o6")
+texture_filter = 4
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_t46ty"]
+material = SubResource("StandardMaterial3D_tfvr7")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Gradient" id="Gradient_iam3h"]
+offsets = PackedFloat32Array(0.215962, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bq2wf"]
+height = 3.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5tct"]
 resource_name = "White"
@@ -167,29 +194,6 @@ bind/27/bone = -1
 bind/27/pose = Transform3D(1, -1.65941e-22, -2.71003e-06, 1.65941e-22, -1, 1.22465e-16, -2.71003e-06, -1.22465e-16, -1, -0.00156997, 0.00520944, 0.000200011)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cja8y"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfvr7"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-shading_mode = 0
-diffuse_mode = 3
-specular_mode = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_xn0o6")
-texture_filter = 4
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_t46ty"]
-material = SubResource("StandardMaterial3D_tfvr7")
-size = Vector2(0.3, 0.3)
-
-[sub_resource type="Gradient" id="Gradient_iam3h"]
-offsets = PackedFloat32Array(0.215962, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_t6lt3"]
 length = 0.001
@@ -2070,6 +2074,36 @@ dash_object = NodePath("Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets
 boots_object = NodePath("JumpSprite")
 
 [node name="Cow" type="Node3D" parent="."]
+
+[node name="UFO" parent="Cow" instance=ExtResource("7_h4pkm")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.252491, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Cow/UFO"]
+transform = Transform3D(1, 2.68221e-07, 3.12924e-07, 2.08616e-07, 1, -8.9407e-08, 1.63913e-07, 3.27825e-07, 1, 1.49965e-06, -2.09303, -0.110782)
+visible = false
+amount = 32
+lifetime = 2.0
+lifetime_randomness = 0.5
+mesh = SubResource("QuadMesh_t46ty")
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 1.5, 0.5)
+gravity = Vector3(0, 1, 0)
+color_ramp = SubResource("Gradient_iam3h")
+
+[node name="UfoArea" type="Area3D" parent="Cow/UFO"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cow/UFO/UfoArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("CylinderShape3D_bq2wf")
+
+[node name="UfoRayCast" type="RayCast3D" parent="Cow/UFO"]
+unique_name_in_owner = true
+target_position = Vector3(0, -3.5, 0)
+debug_shape_thickness = 5
 
 [node name="RootNode" type="Node3D" parent="Cow"]
 
