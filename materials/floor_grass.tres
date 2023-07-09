@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://oyjjil3yj44r" path="res://materials/textures/floor_grass.png" id="1_wg0ak"]
 
 [resource]
+shading_mode = 0
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("1_wg0ak")
-roughness = 0.75
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 texture_filter = 4

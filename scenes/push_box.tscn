@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dabjc22da2kbk"]
 
-[ext_resource type="Material" path="res://materials/box.tres" id="1_xcwcn"]
+[ext_resource type="Material" uid="uid://cpapqsbd4vd6r" path="res://materials/box.tres" id="1_xcwcn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2ud4"]
 
@@ -16,3 +16,5 @@ shape = SubResource("BoxShape3D_b2ud4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_xcwcn")
 mesh = SubResource("BoxMesh_2d71x")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]

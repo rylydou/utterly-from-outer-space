@@ -11,8 +11,7 @@ height = 1.5
 resource_name = "Stripe"
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.941176, 0.180392, 0.396078, 1)
-roughness = 0.0
+albedo_color = Color(0.113725, 0.368627, 0.145098, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxymb"]
 resource_name = "Main"

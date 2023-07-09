@@ -1,7 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://dlqm6thktv6tk"]
+[gd_scene load_steps=40 format=3 uid="uid://dlqm6thktv6tk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_smb3u"]
-[ext_resource type="PackedScene" path="res://scenes/bubble_blower.tscn" id="2_n157o"]
+[ext_resource type="PackedScene" uid="uid://c5xdjra7ax5wg" path="res://scenes/bubble_blower.tscn" id="2_n157o"]
+[ext_resource type="PackedScene" uid="uid://crg3k8xqkl4wb" path="res://3d/firework.glb" id="3_kkb7r"]
+[ext_resource type="Texture2D" uid="uid://dsw0cboflqbel" path="res://materials/textures/bubble_sm.png" id="3_xn0o6"]
+[ext_resource type="Texture2D" uid="uid://g10062pat1t2" path="res://materials/textures/fire.png" id="4_0st5u"]
+[ext_resource type="Texture2D" uid="uid://cvalp061qbtcb" path="res://materials/textures/jump.png" id="6_jehrc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bopcu"]
 friction = 0.0
@@ -196,6 +200,137 @@ bind/27/bone = -1
 bind/27/pose = Transform3D(1, -1.65941e-22, -2.71003e-06, 1.65941e-22, -1, 1.22465e-16, -2.71003e-06, -1.22465e-16, -1, -0.00156997, 0.00520944, 0.000200011)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cja8y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfvr7"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_xn0o6")
+texture_filter = 4
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_t46ty"]
+material = SubResource("StandardMaterial3D_tfvr7")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Gradient" id="Gradient_iam3h"]
+offsets = PackedFloat32Array(0.215962, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_t6lt3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleArea/CollisionShape3D/CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pvkgr"]
+resource_name = "bubble"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleArea/CollisionShape3D/CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleArea/CollisionShape3D/CPUParticles3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwba6"]
+_data = {
+"RESET": SubResource("Animation_t6lt3"),
+"bubble": SubResource("Animation_pvkgr")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3c4"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_0st5u")
+texture_filter = 4
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_03o40"]
+material = SubResource("StandardMaterial3D_ce3c4")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Gradient" id="Gradient_r8urx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_4w7g6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u3jho"]
+resource_name = "rocket"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qfhr"]
+_data = {
+"RESET": SubResource("Animation_4w7g6"),
+"rocket": SubResource("Animation_u3jho")
+}
 
 [sub_resource type="Animation" id="Animation_ov0hu"]
 resource_name = "Armature|Death"
@@ -1876,8 +2011,68 @@ _data = {
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2sp5p"]
 height = 1.0
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("turn_node", "animation_player", "bubble_area")]
-collision_layer = 3
+[sub_resource type="Animation" id="Animation_0qig5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JumpSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JumpSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p1n08"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JumpSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.392292, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2, 2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JumpSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aj73f"]
+_data = {
+"RESET": SubResource("Animation_0qig5"),
+"jump": SubResource("Animation_p1n08")
+}
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("turn_node", "animation_player", "bubble_area", "bubble_object", "dash_object", "boots_object")]
+collision_layer = 11
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -1889,9 +2084,16 @@ can_sleep = false
 script = ExtResource("1_smb3u")
 max_speed = 3.0
 jump_velocity = 5.0
+dash_cooldown = 0.0
+dash_velocity = 20.0
+dash_height = 0.0
+dash_len = 0.5
 turn_node = NodePath("Cow")
 animation_player = NodePath("Cow/AnimationPlayer")
-bubble_area = NodePath("Cow/RootNode/Armature/Skeleton3D/BoneAttachment3D/BubbleArea")
+bubble_area = NodePath("Cow/RootNode/Armature/Skeleton3D/HeadAttachment/BubbleArea")
+bubble_object = NodePath("Cow/RootNode/Armature/Skeleton3D/HeadAttachment")
+dash_object = NodePath("Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets")
+boots_object = NodePath("JumpSprite")
 
 [node name="Cow" type="Node3D" parent="."]
 
@@ -2179,22 +2381,74 @@ bones/38/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_j41xr")
 skin = SubResource("Skin_fx7l1")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Cow/RootNode/Armature/Skeleton3D"]
+[node name="HeadAttachment" type="BoneAttachment3D" parent="Cow/RootNode/Armature/Skeleton3D"]
 transform = Transform3D(-0.866223, -0.00153378, 0.499656, -0.272378, -0.836898, -0.474775, 0.418889, -0.547357, 0.724523, -5.38139e-05, -0.00743729, 0.00926108)
 bone_name = "Head"
 bone_idx = 28
 
-[node name="BubbleBlower" parent="Cow/RootNode/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("2_n157o")]
+[node name="BubbleBlower" parent="Cow/RootNode/Armature/Skeleton3D/HeadAttachment" instance=ExtResource("2_n157o")]
 transform = Transform3D(-0.00129933, 0.000628334, 0.000408568, -2.30074e-06, -0.000821034, 0.00125535, 0.000749483, 0.00108678, 0.000712162, 0.000809361, -0.000401665, 0.00150961)
 
-[node name="BubbleArea" type="Area3D" parent="Cow/RootNode/Armature/Skeleton3D/BoneAttachment3D"]
+[node name="BubbleArea" type="Area3D" parent="Cow/RootNode/Armature/Skeleton3D/HeadAttachment"]
 transform = Transform3D(-0.00866223, 0.00418889, 0.00272378, -1.53383e-05, -0.00547356, 0.00836898, 0.00499656, 0.00724523, 0.00474775, -0.00595174, -0.00115522, -0.010214)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cow/RootNode/Armature/Skeleton3D/BoneAttachment3D/BubbleArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cow/RootNode/Armature/Skeleton3D/HeadAttachment/BubbleArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83968, 1.17831)
 shape = SubResource("BoxShape3D_cja8y")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Cow/RootNode/Armature/Skeleton3D/HeadAttachment/BubbleArea/CollisionShape3D"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("QuadMesh_t46ty")
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("Gradient_iam3h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cow/RootNode/Armature/Skeleton3D/HeadAttachment"]
+method_call_mode = 1
+libraries = {
+"": SubResource("AnimationLibrary_jwba6")
+}
+
+[node name="TorsoAttachment" type="BoneAttachment3D" parent="Cow/RootNode/Armature/Skeleton3D"]
+transform = Transform3D(-0.999633, -0.0270931, -5.71949e-05, 0.0270188, -0.997043, 0.0719387, -0.00200607, 0.0719106, 0.997409, -5.38101e-05, -0.000328129, 0.00648284)
+bone_name = "Torso"
+bone_idx = 31
+
+[node name="Rockets" type="Node3D" parent="Cow/RootNode/Armature/Skeleton3D/TorsoAttachment"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+emitting = false
+amount = 16
+lifetime = 0.4
+lifetime_randomness = 0.5
+mesh = SubResource("QuadMesh_03o40")
+emission_shape = 4
+emission_points = PackedVector3Array(-0.3, -0.15, 0, 0.3, -0.15, 0)
+direction = Vector3(0, -1, 0)
+spread = 25.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+color_ramp = SubResource("Gradient_r8urx")
+
+[node name="firework" parent="Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets" instance=ExtResource("3_kkb7r")]
+transform = Transform3D(-0.881843, -0.47111, -0.0201756, -0.46572, 0.863454, 0.193788, -0.0738749, 0.180287, -0.980837, -0.00264064, -0.00322931, 0.000731373)
+
+[node name="firework2" parent="Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets" instance=ExtResource("3_kkb7r")]
+transform = Transform3D(0.886889, 0.312605, 0.340155, -0.425451, 0.839636, 0.337647, -0.180055, -0.444174, 0.877662, 0.0025826, -0.00312391, 0.000230419)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets"]
+libraries = {
+"": SubResource("AnimationLibrary_4qfhr")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cow"]
 playback_default_blend_time = 0.2
@@ -2205,3 +2459,21 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_2sp5p")
+
+[node name="JumpSprite" type="Sprite3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+top_level = true
+modulate = Color(1, 1, 1, 0)
+pixel_size = 0.05
+axis = 1
+texture_filter = 4
+texture = ExtResource("6_jehrc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aj73f")
+}
+
+[connection signal="on_bubble" from="." to="Cow/RootNode/Armature/Skeleton3D/HeadAttachment/AnimationPlayer" method="play" binds= [&"bubble"]]
+[connection signal="on_dash" from="." to="Cow/RootNode/Armature/Skeleton3D/TorsoAttachment/Rockets/AnimationPlayer" method="play" binds= [&"rocket"]]
+[connection signal="on_jump" from="." to="AnimationPlayer" method="play" binds= [&"jump"]]
