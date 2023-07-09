@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://0xs4kk3lrxeo"]
+[gd_scene load_steps=3 format=3 uid="uid://0xs4kk3lrxeo"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_rfrno"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_bo5uc"]
+
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,25 +25,53 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Pan" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.5
+offset_top = -26.0
+offset_right = 322.5
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="Texts" type="MarginContainer" parent="Pan"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-alignment = 1
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="Jump" type="Label" parent="Pan/Texts"]
+visible = false
 layout_mode = 2
+text = "You got some Rocket Boots!
+The alien technology lets you jump much higher than you ever could have imagined"
+label_settings = SubResource("LabelSettings_bo5uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dash" type="Label" parent="Pan/Texts"]
+visible = false
+layout_mode = 2
+text = "You found a prototype for a jetpack, but it doesn't quite fit right.
+Press Shift to activate it."
+label_settings = SubResource("LabelSettings_bo5uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dash2" type="Label" parent="Pan/Texts"]
+visible = false
+layout_mode = 2
+text = "You have finaly found the ship they have used to abduct you and your family.
+Now take revenge on the aliens."
+label_settings = SubResource("LabelSettings_bo5uc")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -155,15 +155,18 @@ func boots():
 	jump_velocity = boots_jump_velocity
 	boots_object.show()
 	power_jump = true
+	Hud.get_item(0)
 
 func dash():
 	can_dash = true
 	til_dash = 0
 	dash_object.show()
+	Hud.get_item(1)
 
 func ufo():
 	is_ufo = true
 	%UFO.show()
+	Hud.get_item(2)
 
 func _on_checkpoint_area_area_entered(area: Area3D) -> void:
 	checkpoint = area.global_position

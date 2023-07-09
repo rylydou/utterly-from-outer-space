@@ -35,7 +35,7 @@ offsets = PackedFloat32Array(0.215962, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bq2wf"]
-height = 3.0
+height = 4.53751
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5tct"]
 resource_name = "White"
@@ -2062,6 +2062,7 @@ can_sleep = false
 script = ExtResource("1_smb3u")
 max_speed = 3.0
 jump_velocity = 5.0
+boots_jump_velocity = 8
 dash_cooldown = 0.0
 dash_velocity = 20.0
 dash_height = 0.0
@@ -2078,17 +2079,16 @@ boots_object = NodePath("JumpSprite")
 [node name="UFO" parent="Cow" instance=ExtResource("7_h4pkm")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.252491, 0)
+visible = false
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="Cow/UFO"]
-transform = Transform3D(1, 2.68221e-07, 3.12924e-07, 2.08616e-07, 1, -8.9407e-08, 1.63913e-07, 3.27825e-07, 1, 1.49965e-06, -2.09303, -0.110782)
-visible = false
+transform = Transform3D(1, 2.68221e-07, 3.12924e-07, 2.08616e-07, 1, -8.9407e-08, 1.63913e-07, 3.27825e-07, 1, 1.49965e-06, -2.79027, -0.110782)
 amount = 32
-lifetime = 2.0
 lifetime_randomness = 0.5
 mesh = SubResource("QuadMesh_t46ty")
 emission_shape = 3
-emission_box_extents = Vector3(0.5, 1.5, 0.5)
-gravity = Vector3(0, 1, 0)
+emission_box_extents = Vector3(0.5, 2, 0.5)
+gravity = Vector3(0, 2, 0)
 color_ramp = SubResource("Gradient_iam3h")
 
 [node name="UfoArea" type="Area3D" parent="Cow/UFO"]
@@ -2097,12 +2097,12 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cow/UFO/UfoArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45028, 0)
 shape = SubResource("CylinderShape3D_bq2wf")
 
 [node name="UfoRayCast" type="RayCast3D" parent="Cow/UFO"]
 unique_name_in_owner = true
-target_position = Vector3(0, -3.5, 0)
+target_position = Vector3(0, -4, 0)
 debug_shape_thickness = 5
 
 [node name="RootNode" type="Node3D" parent="Cow"]
