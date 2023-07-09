@@ -1,8 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://bdq7s4ilg67o1"]
+[gd_scene load_steps=31 format=3 uid="uid://bdq7s4ilg67o1"]
 
 [ext_resource type="Script" path="res://scripts/alien.gd" id="1_1kk0j"]
 [ext_resource type="Texture2D" uid="uid://bppsk3lh74scn" path="res://materials/textures/bubble.png" id="2_4xarg"]
-[ext_resource type="PackedScene" uid="uid://cudgu1mk6kl08" path="res://3d/exclamation.glb" id="3_lcjih"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0uyec"]
 height = 1.5
@@ -5233,20 +5232,33 @@ radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yds1d"]
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0.501961)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_l6ots"]
-flip_faces = true
 top_radius = 0.25
 bottom_radius = 1.0
 height = 4.0
 radial_segments = 8
 rings = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xybvm"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+billboard_mode = 2
+
+[sub_resource type="TextMesh" id="TextMesh_f66pi"]
+material = SubResource("StandardMaterial3D_xybvm")
+text = "!"
+font_size = 96
+
 [node name="Alien" type="StaticBody3D" node_paths=PackedStringArray("look_node", "turn_node", "animation_player", "raycast", "skeleton", "exclamation")]
 collision_layer = 5
 script = ExtResource("1_1kk0j")
+grace_time = 0.25
 look_node = NodePath("VisionCone")
 turn_node = NodePath("alien_a")
 animation_player = NodePath("alien_a/AnimationPlayer")
@@ -5700,7 +5712,8 @@ debug_shape_thickness = 5
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.4256)
 shape = SubResource("CylinderShape3D_s2jc7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VisionCone/CollisionShape3D"]
+[node name="Cone" type="MeshInstance3D" parent="VisionCone/CollisionShape3D"]
+unique_name_in_owner = true
 visible = false
 material_override = SubResource("StandardMaterial3D_yds1d")
 mesh = SubResource("CylinderMesh_l6ots")
@@ -5716,9 +5729,10 @@ no_depth_test = true
 texture_filter = 4
 texture = ExtResource("2_4xarg")
 
-[node name="exclamation" parent="." instance=ExtResource("3_lcjih")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.75, 0)
+[node name="exclamation" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9201, 0)
 visible = false
+mesh = SubResource("TextMesh_f66pi")
 
 [connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
 [connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]

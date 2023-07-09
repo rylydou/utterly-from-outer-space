@@ -20,6 +20,7 @@ var bubble_timer := 0.
 var loop_progress := 0.
 
 func bubble() -> void:
+	SoundBank.play('absorb', global_position)
 	is_bubbled = true
 	$Bubble.show()
 
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		bubble_timer += delta
 		turn_node.visible = int(bubble_timer*20)%2 == 0
 		translate(Vector3.UP*delta*bubble_timer*5)
+		SoundBank.play('alien_death', global_position)
 		if bubble_timer > 1.:
 			queue_free()
 		return
@@ -51,8 +53,12 @@ func _physics_process(delta: float) -> void:
 			if grace_timer > grace_time:
 				shoot_timer += delta
 				if shoot_timer > shoot_time:
+					SoundBank.play('pew', global_position)
 					seen_player.take_damage(40.)
 					shoot_timer = 0
+					%Cone.show()
+					var t := create_tween()
+					t.tween_callback(%Cone.hide).set_delay(0.3)
 			grace_timer += delta
 	else:
 		grace_timer = 0
@@ -68,6 +74,7 @@ func _physics_process(delta: float) -> void:
 		
 
 func _on_vision_cone_body_entered(body: Node3D) -> void:
+	SoundBank.play('ping', global_position)
 	var player = body as Player
 	if not player: return
 	seen_player = player

@@ -1,6 +1,7 @@
 class_name Player extends RigidBody3D
 
 static var current: Player
+static var checkpoint: Vector3
 
 signal on_bubble()
 signal on_dash()
@@ -36,9 +37,11 @@ var dashing := false
 
 func _ready() -> void:
 	current = self
-	til_dash = dash_cooldown
-	dashing_for = -1
-	dashing = false
+	
+	if checkpoint == Vector3.ZERO:
+		checkpoint = global_position
+	else:
+		global_position = checkpoint
 
 func take_damage(amount: float) -> void:
 	hp -= amount
@@ -62,6 +65,9 @@ func _process(delta: float) -> void:
 				body.call('bubble')
 
 func _physics_process(delta: float) -> void:
+	if $OozeArea.get_overlapping_bodies().size() > 0:
+		take_damage(1)
+	
 	heal_timer += delta
 	if heal_timer > heal_delay:
 		hp = move_toward(hp, max_hp, heal_rate*delta)
@@ -132,3 +138,7 @@ func dash():
 	can_dash = true
 	til_dash = 0
 	dash_object.show()
+
+
+func _on_checkpoint_area_area_entered(area: Area3D) -> void:
+	checkpoint = area.global_position

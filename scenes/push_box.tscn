@@ -18,3 +18,4 @@ material_override = ExtResource("1_xcwcn")
 mesh = SubResource("BoxMesh_2d71x")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_attenuation = 0.0915054

@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cos2j0sbgdxh8" path="res://materials/textures/floor_mars.png" id="1_dhc1n"]
 
 [resource]
+shading_mode = 0
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("1_dhc1n")
-metallic_specular = 0.0
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 texture_filter = 4

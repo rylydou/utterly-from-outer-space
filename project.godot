@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Hud="*res://scenes/hud.tscn"
+SoundBank="*res://addons/soundbank/soundbank.gd"
 
 [debug]
 
@@ -37,7 +38,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/goshapes/plugin.cfg")
+enabled=PackedStringArray("res://addons/goshapes/plugin.cfg", "res://addons/soundbank/plugin.cfg")
 
 [importer_defaults]
 
@@ -105,7 +106,8 @@ bubble={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Alien"
 3d_physics/layer_4="Ooze"
-3d_physics/layer_9="box"
+3d_physics/layer_5="Checkpoint"
+3d_physics/layer_9="Box"
 
 [rendering]
 
